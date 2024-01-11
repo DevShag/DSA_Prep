@@ -1,6 +1,8 @@
 package week2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Vector;
 
 
 
@@ -185,7 +187,7 @@ public class Recursion {
  
 	 public static ArrayList<Long> nthRowOfPascalTriangle(int n) {
 		
-		 ArrayList<Long> l=new ArrayList<>();
+		 ArrayList<Long > l=new ArrayList<>();
 		 
 		 long[][] arr=new long[n][n];
 		 
@@ -193,35 +195,145 @@ public class Recursion {
 			for(int j=0;j<=i;j++) {
 				if(j==0 || j==i) {
 					arr[i][j]=1;
-					if(i==n-1)
-					l.add((long)1);
+					
 				}
 				else {
-					long sum=arr[i-1][j-1]+arr[i-1][j];
+					long sum=(arr[i-1][j-1]%1000000007+arr[i-1][j]%1000000007)%1000000007;
 					arr[i][j]=sum;
-					if(i==n-1)
-					l.add(sum);
+					
 				}
+				
+				if(i==n-1){
+				    l.add(arr[i][j]);
+				}
+					
 			}
 		 }
 		 
-//		 for(int i=0;i<n;i++) {
-//				for(int j=0;j<=i;j++) {
-//					System.out.print(arr[i][j]+" ");
-//				}
-//				System.out.println();
-//			 }
-//		 
-//		 
-//		 System.out.println("===========List============");
-		 System.out.println(l.toString());
+
 		 return l;
+
 	 }
 	 
+	 public static int Factorial(int n) {
+		 if(n==0) {
+			 return 1;
+		 }
+		 int ans=n*Factorial(--n);
+		 System.out.println(ans);
+		 return ans;
+	 }
+	 
+	
+	
+    static Vector<Long> FibonaciSeriesWithVector(int N) {
+        
+    	Vector<Long> res=new Vector<Long>();
+        
+        if(N==1){
+            res.add((long) 0);
+            res.add((long) 1);
+            return res;
+        }
+        else{
+            res = FibonaciSeriesWithVector(N-1);
+        }
+        
+        res.add(res.get(N-1)+res.get(N-2));
+        
+        return res;
+    }
+	 
+	 
+	 
+    static long[] FibonaciSeriesWithArray(int N) {
+    	
+    	long[] arr=new long[N+1];
+    	
+    	if(N==1) {
+    		arr[0]=0;
+    		arr[1]=1;
+    		return arr;
+    	}
+    	else {
+//    		System.out.println("N : "+N);
+    		long[] copyarr=FibonaciSeriesWithArray(N-1);
+    		for(int i=0;i<copyarr.length;i++) {
+    			arr[i]=copyarr[i];
+    		}
+    		
+    	}
+    	arr[N]=arr[N-1]+arr[N-2];
+		return arr;
+    	
+    }
+    
+    
+    //Count Ways To Reach The N-th Stairs
+    // https://bit.ly/32VA96H
+    public static int countDistinctWayToClimbStair(long nStairs) {
+		if(nStairs<0) {
+			return 0;
+		}
+		if(nStairs==0) {
+			return 1;
+		}
+		int ans=countDistinctWayToClimbStair(nStairs-1)+countDistinctWayToClimbStair(nStairs-2);
+		return ans;
+	}
+    
+    
+    static boolean isSorted(int[] arr, int i) {
+    	if(arr.length==0||arr.length==1) {
+    		return true;
+    	}
+    	
+    	if(i==arr.length-1) {
+    		return true;
+    	}
+    	if(arr[i]<arr[i+1]) {
+    		return isSorted(arr, i+1);
+    	}
+    	else {
+    		return false;
+    	}
+    }
+    
+    static boolean LinearSearch(int[] arr, int key, int i) {
+    	
+    	if(i>=arr.length) {
+    		return false;
+    	}
+    	if(arr[i]==key) {
+    		return true;
+    	}
+    	return LinearSearch(arr, key, i+1);
+    }
+    
+	static boolean BinarySearch(int[] arr, int key, int start, int end) {
+	    	
+	    	if(start>end) {
+	    		return false;
+	    	}
+	    	int mid=(start+end)/2;
+	    	if(arr[mid]==key) {
+	    		return true;
+	    	}
+	    	else if(arr[mid]>key) {
+	    		end--;
+	    	}
+	    	else {
+	    		start++;
+	    	}
+	    	return BinarySearch(arr, key, start, end);
+	 }
+    
+    
     public static void main(String args[]) 
     { 
-    	int[] arr=new int[] {-1, 2, 3};    	
-    	nthRowOfPascalTriangle(5);
-//    	System.out.println(i);
+    	int[] arr=new int[] {-1, 2, 3,5,7,10,11};
+//    	System.out.println(Arrays.toString(arr1));
+    	boolean b=BinarySearch(arr,-5, 0,arr.length);
+    	System.out.println(b);
     } 
 }
