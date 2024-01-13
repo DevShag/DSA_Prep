@@ -2,6 +2,7 @@ package week2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Stack;
 import java.util.Vector;
 
 
@@ -327,13 +328,228 @@ public class Recursion {
 	    	}
 	    	return BinarySearch(arr, key, start, end);
 	 }
+	
+	static void insert(int arr[],int i)
+	  {
+	       // Your code here
+	  }
+	  //Function to sort the array using insertion sort algorithm.
+	  public static void insertionSort(int arr[], int n)
+	  {
+	      for(int i=1;i<n;i++) {
+	    	  int temp=arr[i];
+	    	  for(int j=i-1;j>=0;j--) {
+	    		  if(arr[j]>temp) {
+	    			  arr[j+1]=arr[j];
+	    			  arr[j]=temp;
+	    		
+	    		  }
+	    		  else {
+					break;
+				}
+	    	  }
+	      }
+	      
+	      System.out.println(Arrays.toString(arr));
+	  }
+	  
+	  public static void Insert(int arr[], int i) {
+		  int temp=arr[i];
+    	  for(int j=i-1;j>=0;j--) {
+    		  if(arr[j]>temp) {
+    			  arr[j+1]=arr[j];
+    			  arr[j]=temp;
+    		
+    		  }
+    		  else {
+				break;
+			}
+    	  }
+	  }
+	  
+	public static void InsertionSortRecursion(int arr[], int n) {
+		
+		if(n<=1) {
+			System.out.println(Arrays.toString(arr));
+			return;
+		}
+			
+		InsertionSortRecursion(arr, n-1);
+//		int temp=arr[n]
+//		Insert(arr, i);
+  	  	
+	}
+	
+	 static void insertionSortRecursive(int arr[], int n) 
+	    { 
+	        // Base case 
+	        if (n <= 1) 
+	            return; 
+	       
+	        insertionSortRecursive( arr, n-1 );  
+	        int last = arr[n-1]; 
+	        int j = n-2; 
+	       
+	        while (j >= 0 && arr[j] > last) 
+	        { 
+	            arr[j+1] = arr[j]; 
+	            j--; 
+	        } 
+	        arr[j+1] = last; 
+	    } 
+	
+	  public static void BubbleSortRecursion(int[] arr,int n) {
+		  if(n==1) {
+			  System.out.println(Arrays.toString(arr));
+			  return;
+		  }
+		  
+		  
+		  for(int j=0;j<n-1;j++) {
+			  if(arr[j]>arr[j+1]) {
+				  int temp=arr[j+1];
+				  arr[j+1]=arr[j];
+				  arr[j]=temp;
+			  }
+		  }
+		 BubbleSortRecursion(arr, n-1);
+	  }
     
-    
+	  
+	//Sum Of Two Arrays
+	  //https://bit.ly/3DXfsDZ 
+	  public static int[] findArraySum(int[] a, int n, int[] b, int m) {
+			int i=n-1;
+			int j=m-1;
+//			Vector<Integer> sum=new Vector<Integer>();
+			Stack<Integer> sum=new Stack<Integer>();
+			int product=0;
+			int carry=0;
+			int result=0;
+			
+			while(i>=0 && j>=0) {
+				product=a[i]+b[j]+carry;
+				result=product%10;
+				carry=product/10;
+//				sum.add(result);
+				sum.push(result);
+				i--;
+				j--;
+			}
+			
+			int[] lagerArray;
+			int index=0;
+			if(j<0) {
+				lagerArray=a;
+				index=i;
+			}
+			else {
+				lagerArray=b;
+				index=j;
+			}
+			
+			while(index>=0) {
+				product=lagerArray[index]+carry;
+				result=product%10;
+				carry=product/10;
+//				sum.add(result);
+				sum.push(result);
+				index--;
+			}
+			
+			if(carry>0) {
+				sum.push(carry);
+			}
+			
+			int [] arr=new int[sum.size()];
+			int q=0;
+//			for(int k=sum.size()-1;k>=0;k--) {
+//				arr[q]=sum.get(k);
+//				q++;
+//			
+			while(!sum.empty()) {
+				arr[q]=sum.pop();
+				q++;
+			}
+			System.out.println(Arrays.toString(arr));
+			return arr;
+			
+	  }
+	  
+	  static void merge(int[] arr, int start, int mid, int end) {
+		  int len1=mid-start+1;
+		  int len2=end-mid;
+		  
+		  int[] arr1=new int[len1];
+		  int[] arr2=new int[len2];
+		  
+		  int i=0;
+		  int j=0;
+		  int k=start;
+		  for(;i<len1;i++) {
+			  arr1[i]=arr[k++];
+		  }
+		  
+		   k=mid+1;
+		  for(j=0;j<len2;j++) {
+			  arr2[j]=arr[k++];
+		  }
+		  
+		  		  
+		  i=0;
+		  j=0;
+		  k=start;
+		  while(i<len1 && j<len2) {
+			  if(arr1[i] < arr2[j]) {
+				  arr[k]=arr1[i];
+				  i++;
+			  }
+			  else {
+				  arr[k]=arr2[j];
+				  j++;
+			  }
+			  k++;
+		  }
+		  
+		  while(i<len1) {
+			  arr[k]=arr1[i];
+			  i++;
+			  k++;
+		  }
+		  
+		  while(j<len2) {
+			  arr[k]=arr2[j];  
+			  j++;
+			  k++;
+		  }
+		  
+		
+	  }
+	  
+	  static void mergeSort(int[] arr,int start,int end) {
+		  
+		  if(start>=end) {
+			  return;
+		  }
+		  
+		  int mid=start+(end-start)/2;
+		  
+		  mergeSort(arr, start,mid);
+		  
+		  mergeSort(arr, mid+1, end);
+		  
+		  merge(arr, start, mid, end);
+		  
+		  
+	  }
+	  
+	  
     public static void main(String args[]) 
     { 
-    	int[] arr=new int[] {-1, 2, 3,5,7,10,11};
-//    	System.out.println(Arrays.toString(arr1));
-    	boolean b=BinarySearch(arr,-5, 0,arr.length);
-    	System.out.println(b);
+    	int[] arr=new int[] {1,2,3,0,0,0};
+    	int[] arr1=new int[] {2,5,6};
+//    	mergeSortedArrayInPlace(arr, 3, arr1, arr1.length);
+//    	System.out.println(Arrays.toString(arr));
+//    	System.out.println(b);
     } 
 }

@@ -318,9 +318,110 @@ public class Array_Algo {
 		 }
 		 return ans;
 	 }
-	    
-    
 	 
+	 
+	 public static void BubbleSort(int[] arr) {
+			
+		  for(int i=0;i<arr.length-1;i++) {
+			  for(int j=0;j<arr.length-1-i;j++) {
+				  if(arr[j]>arr[j+1]) {
+					  int temp=arr[j+1];
+					  arr[j+1]=arr[j];
+					  arr[j]=temp;
+				  }
+			  }
+		  }
+		  
+		  System.out.println(Arrays.toString(arr));
+	}
+	 
+	 //Check if sorted and Rotated
+	 //https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
+	  public static boolean check(int[] nums) {
+	        int count=0;
+	        for(int i=1;i<nums.length;i++){
+	            if(nums[i-1]>nums[i]){
+	                count++;
+	            }
+	        }
+	        if(nums[nums.length-1]>nums[0]) {
+	        	count++;
+	        }
+	        if(count>1){
+	            return false;
+	        }
+	        return true;
+	    }
+	    
+	  
+	  
+	  public static void mergeSortedArray(int[] nums1, int m, int[] nums2, int n) {
+	        
+	        int[] arr=new int[m+n];
+	        int i=0;
+	        int j=0;
+	        int k=0;
+	        while(i<m && j<n){
+	            if(nums1[i]<nums2[j]){
+	                arr[k++]=nums1[i++];
+	            }
+	            else{
+	                arr[k++]=nums2[j++];
+	            }
+	        }
+
+	        while(i<m){
+	            arr[k++]=nums1[i++];
+	        }
+
+	        while(j<n){
+	            arr[k++]=nums2[j++];
+	        }
+	        
+	        System.out.println(Arrays.toString(arr));
+	    }
+	  
+	  public static void mergeSortedArrayInPlace(int[] nums1, int m, int[] nums2, int n) {
+	        
+	        int i=0;
+	        int j=0;
+	        int k=0;
+	        while(i<m){
+	            if(nums1[i]>nums2[j]){
+	            	int temp=nums1[i];
+	            	nums1[i]=nums2[j];
+	            	nums2[j]=temp;
+					  FixArray(nums2, n);
+	            }
+	            i++;
+	        }
+
+	       
+	        while(j<n){
+	            nums1[i++]=nums2[j++];
+	        }
+	        
+	        System.out.println(Arrays.toString(nums1));
+	    }
+	  
+	  static void FixArray(int[] arr,int n) {
+		  if( n==0){
+	            return;
+	        }
+		  for(int i=0;i<n-1;i++) {
+			  if(arr[i]>arr[i+1]) {
+				  int temp=arr[i];
+				  arr[i]=arr[i+1];
+				  arr[i+1]=temp;
+			  }
+			  else {
+				  break;
+			  }
+		  }
+	  }
+	  
+	  
+
 	 
 	 
 	 
