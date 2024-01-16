@@ -61,6 +61,8 @@ public class NumbrTheory {
         return count;
     }
     
+  
+    
     static long StringToNum(String s) {
     	HashMap<Character,Integer> map=new HashMap<Character,Integer>();
         map.put('0', 0);
@@ -293,6 +295,8 @@ public class NumbrTheory {
 ////    	String s=multiplyStrings(null, null);
 ////    	int p=largestPrimeFactor(4);
 ////    	System.out.print(p);
-//    	SeiveOfEratonSthenes(10);
+////    	SeiveOfEratonSthenes(10);
+//    	
+//    	System.out.println(i);
 //    } 
 }

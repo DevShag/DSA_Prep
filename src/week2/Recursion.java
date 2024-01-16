@@ -544,12 +544,12 @@ public class Recursion {
 	  }
 	  
 	  
-    public static void main(String args[]) 
-    { 
-    	int[] arr=new int[] {1,2,3,0,0,0};
-    	int[] arr1=new int[] {2,5,6};
-//    	mergeSortedArrayInPlace(arr, 3, arr1, arr1.length);
-//    	System.out.println(Arrays.toString(arr));
-//    	System.out.println(b);
-    } 
+//    public static void main(String args[]) 
+//    { 
+//    	int[] arr=new int[] {1,2,3,0,0,0};
+//    	int[] arr1=new int[] {2,5,6};
+////    	mergeSortedArrayInPlace(arr, 3, arr1, arr1.length);
+////    	System.out.println(Arrays.toString(arr));
+////    	System.out.println(b);
+//    } 
 }
