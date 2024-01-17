@@ -124,16 +124,164 @@ public class ArrayWeek3 {
 	        return nums[(0+nums.length-1)/2];
 	    }
 	 
-	 //=============================================
+	  //=============================================
+	 //Week 3 question 5
+//	 https://www.geeksforgeeks.org/problems/minimum-sum4058/1
+	//Time complexity O(NLogN)
+	//Space Complexity O(N)
+	 static String minimumSum(int[] arr, int n) {
+		 	Arrays.sort(arr);         
+	        List<Integer> l1=new ArrayList<Integer>();
+	        List<Integer> l2=new ArrayList<Integer>();
+	       for(int i=0;i<arr.length;i++){
+	            if(i%2==0){
+	                l1.add(arr[i]);
+	                // System.out.println("n1 : "+n1);
+	            }
+	            else{
+	                l2.add(arr[i]);
+	            }
+	        }
+	        
+	        int i=l1.size()-1;
+	        int j=l2.size()-1;
+	        Stack<Integer> stack=new Stack<Integer>();
+	        int carry=0;
+	        while(i>=0 && j>=0){
+	            int product=l1.get(i--)+l2.get(j--)+carry;
+	            int result=product%10;
+	             carry=product/10;
+	            stack.push(result);
+	        }
+	        
+	        while(i>=0){
+	            int product=l1.get(i--)+carry;
+	            int result=product%10;
+	             carry=product/10;
+	            stack.push(result);
+	        }
+	        
+	         while(j>0){
+	            int product=l2.get(j--)+carry;
+	            int result=product%10;
+	             carry=product/10;
+	            stack.push(result);
+	        }
+	        
+	        if(carry>0){
+	            stack.push(carry);
+	        }
+	        
+	        
+	        
+	        String s="";
+	        boolean isZero=true;
+	        while(!stack.isEmpty()){
+	            int a=stack.pop();
+	            if(a==0 && isZero){
+	                continue;
+	            }
+	            else{
+	                isZero=false;
+	                s+=a;
+	            }
+	            // /+=stack.pop();
+	        }
+	        
+	        if(s==""){
+	            return "0";
+	        }
+	        return s;
+
+	    }
+	 
+//================================================================	 
+	 
+	 //https://leetcode.com/problems/sort-colors/
+	
+	 	//Time complexity O(N)
+		//Space Complexity O(1);
+	    public void sortColorsUsingDutchFlagAlgo(int[] nums) {
+	        int start=0;
+	        int mid=0;
+	        int end=nums.length-1;
+
+	        while(mid<=end){
+	            if(nums[mid]==0){
+	                swap(nums,start,mid);
+	                start++;
+	                mid++;
+
+	            }         
+	            else if(nums[mid]==1){
+	                mid++;
+
+	            }   
+	            else{
+	                swap(nums,mid,end);
+	                end--;
+	            }                               
+	        }
+	    }
+	    
+	    void swap(int[] nums, int i, int j){
+	        // System.out.println("i : "+i+" , j : "+j);
+	        int temp=nums[i];
+	        nums[i]=nums[j];
+	        nums[j]=temp;
+	    }
+
+//=================================================================================	    
+	 
+	 //https://leetcode.com/problems/maximum-subarray/
+	    public int maxSubArrayBrutForce(int[] nums) {
+	        int currentSum=0;
+	        int maxSum=nums[0];
+	        for(int i=0;i<nums.length;i++){
+	            currentSum=nums[i];
+	            if(currentSum>maxSum){
+	                    maxSum=currentSum;
+	                }
+	            for(int j=i+1;j<nums.length;j++){
+	                currentSum+=nums[j];
+	                if(currentSum>maxSum){
+	                    maxSum=currentSum;
+	                }
+	            }
+	        }
+
+	        return maxSum;
+	    }
+
+	 
+	//Time complexity O(N)
+	//Space Complexity O(1);
+	 public int maxSubArrayUsingKadanesAlgo(int[] nums) {
+	        int currentSum=0;
+	        int maxSum=nums[0];
+
+	        for(int i=0;i<nums.length;i++){
+	            currentSum+=nums[i];
+	            if(currentSum>maxSum){
+	                maxSum=currentSum;
+	            }
+
+	            if(currentSum<0){
+	                currentSum=0;
+	            }
+	        }
+	        return maxSum;
+	    }
 	 
 	 public static void main(String args[]) 
 	   { 
-	   	int[] arr=new int[] {1,2,4,2,5,7,2,4,9,0,9};
+	   	int[] arr=new int[] {1, 1, 5, 2, 7, 6, 1, 4, 2, 3, 2, 2, 1, 6, 8, 5, 7, 6, 1, 8, 9, 2, 7, 9, 5, 4, 3, 1};
 	//   	int[] arr1=new int[] {2,5,6};
 			 
-			 int b=maxProfitUsingExtraSpace(arr);
+			 solve(arr,28);
+			 System.out.println(Arrays.toString(arr));
 	//   	mergeSortedArrayInPlace(arr, 3, arr1, arr1.length);
 	//   	System.out.println(Arrays.toString(arr));
-	   	System.out.println(b);
+//	   	System.out.println(b);
 	   } 
 }
