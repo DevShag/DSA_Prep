@@ -273,13 +273,75 @@ public class ArrayWeek3 {
 	        return maxSum;
 	    }
 	 
+	 
+//	 ==================================================
+	 
+	 public static void Swap(int[] nums, int i, int j){
+	        int temp=nums[i];
+	        nums[i]=nums[j];
+	        nums[j]=temp;
+
+	    }
+
+	    public static void Reverse(int[] nums, int start, int end){
+	        
+	        while(start<end){
+	            Swap(nums,start++,end--);
+	        }
+	    }
+
+	    //
+	    //Time complexity: O(n)
+	    //Space complexity: O(1)
+	    public static void nextPermutation(int[] nums) {
+	    	int i=nums.length-2;
+
+	        while(i>=0 && nums[i]>=nums[i+1]){
+	            i--;
+	        }
+
+	        int j=nums.length-1;
+
+	        if(i>=0)
+	        {
+	            while(nums[j]<=nums[i]){
+	                j--;
+	            }
+	            Swap(nums,i,j);
+	        }
+	        Reverse(nums, i+1, nums.length-1);
+	    }
+	    
+	    public static int[] rearrangeArray(int[] nums) {
+	        boolean isPositive=nums[0]>0?true:false;
+	        int index=1;
+
+	        for(int i=1; i<nums.length;i++){
+	             boolean b=nums[i]>0?true:false;
+	            //  System.out.println("isPositive : "+isPositive);
+	                // System.out.println("i : "+nums[i]+" , b : "+b+" index : "+index);
+	                //  System.out.println("index : "+index);
+	             if(b!=isPositive){
+	                 if(i!=index){
+	                     Swap(nums, index, i);
+	                 }
+	                 index++;
+	                 isPositive=b;
+	             }
+//	            System.out.println(Arrays.toString(nums));
+	        }
+
+	        System.out.println(Arrays.toString(nums));
+	        return nums;
+	    }
+	 
 	 public static void main(String args[]) 
 	   { 
-	   	int[] arr=new int[] {1, 1, 5, 2, 7, 6, 1, 4, 2, 3, 2, 2, 1, 6, 8, 5, 7, 6, 1, 8, 9, 2, 7, 9, 5, 4, 3, 1};
-	//   	int[] arr1=new int[] {2,5,6};
+//	   	int[] arr=new int[] {1, 1, 5, 2, 7, 6, 1, 4, 2, 3, 2, 2, 1, 6, 8, 5, 7, 6, 1, 8, 9, 2, 7, 9, 5, 4, 3, 1};
+	   	int[] arr1=new int[] {3,1,-2,-5,2,-4};
 			 
-			 solve(arr,28);
-			 System.out.println(Arrays.toString(arr));
+			 rearrangeArray(arr1);
+			 System.out.println(Arrays.toString(arr1));
 	//   	mergeSortedArrayInPlace(arr, 3, arr1, arr1.length);
 	//   	System.out.println(Arrays.toString(arr));
 //	   	System.out.println(b);
