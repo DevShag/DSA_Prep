@@ -312,38 +312,57 @@ public class ArrayWeek3 {
 	        Reverse(nums, i+1, nums.length-1);
 	    }
 	    
+	    
+//	    ==========================================================
+	    
+	    public static void RightShiftByOne(int[] nums, int start, int end) {
+	    	
+	    	for(int i=end;i>start; i--) {
+	    		nums[i]=nums[i-1];
+	    	}
+	    }
+	    
 	    public static int[] rearrangeArray(int[] nums) {
 	        boolean isPositive=nums[0]>0?true:false;
 	        int index=1;
-
-	        for(int i=1; i<nums.length;i++){
+	        int i=1;
+//	        for(int i=1; i<nums.length;i++){
+	        while(i<nums.length) {
 	             boolean b=nums[i]>0?true:false;
-	            //  System.out.println("isPositive : "+isPositive);
-	                // System.out.println("i : "+nums[i]+" , b : "+b+" index : "+index);
-	                //  System.out.println("index : "+index);
 	             if(b!=isPositive){
 	                 if(i!=index){
-	                     Swap(nums, index, i);
+	                	 int temp=nums[i];
+	                     RightShiftByOne(nums, index, i);
+	                     nums[index]=temp;
 	                 }
 	                 index++;
 	                 isPositive=b;
+	                 i=index;
+	             }
+	             else{
+	            	 i++;
 	             }
 //	            System.out.println(Arrays.toString(nums));
 	        }
 
-	        System.out.println(Arrays.toString(nums));
+//	        System.out.println(Arrays.toString(nums));
 	        return nums;
 	    }
 	 
-	 public static void main(String args[]) 
-	   { 
-//	   	int[] arr=new int[] {1, 1, 5, 2, 7, 6, 1, 4, 2, 3, 2, 2, 1, 6, 8, 5, 7, 6, 1, 8, 9, 2, 7, 9, 5, 4, 3, 1};
-	   	int[] arr1=new int[] {3,1,-2,-5,2,-4};
-			 
-			 rearrangeArray(arr1);
-			 System.out.println(Arrays.toString(arr1));
-	//   	mergeSortedArrayInPlace(arr, 3, arr1, arr1.length);
-	//   	System.out.println(Arrays.toString(arr));
-//	   	System.out.println(b);
-	   } 
+//	 public static void main(String args[]) 
+//	   { 
+////	   	int[] arr=new int[] {1, 1, 5, 2, 7, 6, 1, 4, 2, 3, 2, 2, 1, 6, 8, 5, 7, 6, 1, 8, 9, 2, 7, 9, 5, 4, 3, 1};
+////	   	int[] arr1=new int[] {28,-41,22,-8,-37,46,35,-9,18,-6,19,-26,-37,-10,-9,15,14,31};
+//		 
+////		 int[] arr1=new int[] {-37,-10,-9,15,14,31};
+////			 
+////		 int[] arr1=new int[] {1,2,3,-4,-5,-6};
+//	   	int[] arr1=new int[] {-1,1};
+//	   	System.out.println(Arrays.toString(arr1));
+//			 rearrangeArray(arr1);
+//			 System.out.println(Arrays.toString(arr1));
+//	//   	mergeSortedArrayInPlace(arr, 3, arr1, arr1.length);
+//	//   	System.out.println(Arrays.toString(arr));
+////	   	System.out.println(b);
+//	   } 
 }
