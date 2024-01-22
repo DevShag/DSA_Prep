@@ -7,17 +7,9 @@ public class RearrangeArrayElementsBySign {
 	
 	 public static void main(String args[]) 
 	   { 
-	   	int[] arr1=new int[] {-37,-10,-9,15,14,31};
-//	   	System.out.println(Arrays.toString(arr1));
-			// rearrangeArrayBrutforce(arr1);
-//			 System.out.println(Arrays.toString(arr1));
+	   	    int[] arr1=new int[] {-37,-10,-9,15,14,31};
 			 ArrayList<Integer[]> list = new ArrayList<Integer[]>();
-			 Integer[] i=new Integer[] {1,3};
-			 list.add(i);
-			 list.add(i);
-			 list.size();
-//			 int[][] a= (int[][]) list.toArray();
-			 int b=0;
+			 
 	   } 
 	 
 	 
