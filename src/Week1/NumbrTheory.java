@@ -5,7 +5,30 @@ import java.util.*;
 
 public class NumbrTheory {
 		
-    
+// ==============================Q-10==========================================   
+//	Time Complexity: O(N)
+//	Auxiliary Space: O(N) because it is using extra space for string result
+	static String reverseEqnBrutForce(String S)
+    {
+        String result="";
+        String str="";
+        
+        for(int i=0;i<S.length();i++){
+            char c=S.charAt(i);
+            if((c=='+') || (c=='-') || (c=='*') || (c=='/')){
+            	
+                result=c+str+result;
+                str="";
+            }
+            else{
+                str+=c;
+            }
+        }
+        
+        result=str+result;
+        return result;
+    }
+	
     public static void print_divisors(int n) {
     	if(n==1) {
     		System.out.print(n);
@@ -48,6 +71,8 @@ public class NumbrTheory {
         return sum;
     }
     
+    
+//    ============================Q 16================================   	
     public static int commonFactors(int a, int b) {
         int count =1;
         int limit=(a<b)?a:b;
@@ -236,7 +261,9 @@ public class NumbrTheory {
         return ans;
     }
     
-    
+//    =========================================
+    //Time Complexity O(sqrt(N))
+    //space complexity of this function is O(1)
     public static int largestPrimeFactor(int n) {
     	int ans=0;
     	for(int i=2;i*i<=n;i++) {
@@ -264,6 +291,7 @@ public class NumbrTheory {
     	Arrays.fill(isPrime, true);
     	isPrime[0]=false;
     	isPrime[1]=false;
+   
     	
     	int count=0;
     	for(int i=2;i*i<=n;i++) {
@@ -288,15 +316,16 @@ public class NumbrTheory {
     }
   
     // Driver method 
-//    public static void main(String args[]) 
-//    { 
-////    	String s=mult("6", "5");;
-////        System.out.println("The divisors of 100 are: "); 
-////    	String s=multiplyStrings(null, null);
-////    	int p=largestPrimeFactor(4);
-////    	System.out.print(p);
-////    	SeiveOfEratonSthenes(10);
-//    	
+    public static void main(String args[]) 
+    { 
+//    	String s=mult("6", "5");;
+//        System.out.println("The divisors of 100 are: "); 
+//    	String s=multiplyStrings(null, null);
+//    	int p=largestPrimeFactor(4);
+//    	System.out.print(p);
+//    	SeiveOfEratonSthenes(10);
+    	reverseEqnBrutForce("20-3+5*2");
 //    	System.out.println(i);
-//    } 
+//    	978784
+    } 
 }

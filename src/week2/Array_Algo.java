@@ -8,6 +8,40 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Array_Algo {
+	
+	
+	public static int removeDuplicates(int[] nums) {
+		
+		int i=0;
+		int j=i+1;
+		int count=1;
+		while(j<nums.length) {
+			if(nums[i]!=nums[j]) {
+				nums[i+1]=nums[j];
+				i++;
+				count++;
+			}
+			j++;
+		}
+		return count;
+	}
+	
+	public static void moveZeroesApproch2(int[] nums) {
+	        if(nums.length==0){
+	            return ;
+	        }
+	        int nonZeroIndex=0;
+	        for(int i=0;i<nums.length;i++){
+	            if(nums[i]!=0){
+	                nums[nonZeroIndex]=nums[i];
+	                nonZeroIndex++;
+	            }
+	        }
+
+	        while(nonZeroIndex<nums.length){
+	            nums[nonZeroIndex++]=0;
+	        }
+	    }
 
  public static void moveZeroes(int[] nums) {
 		 
@@ -58,7 +92,7 @@ public class Array_Algo {
 		 return val;
 	  }
 	 
-	 
+	
 	 
 	 public static int[] twoSum2Sorting(int[] nums, int target) {
 		 int val[]=new int[2];
@@ -421,7 +455,12 @@ public class Array_Algo {
 	  }
 	  
 	  
-
+    public static void main(String args[]) 
+    { 
+    	int[] arr=new int[] {2,7,11,15};
+//    	System.out.println(Arrays.toString(arr));
+//    	System.out.println(b);
+    }
 	 
 	 
 	 
