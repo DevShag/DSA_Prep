@@ -2,8 +2,8 @@ package week5_LinkedList.Implementation;
 
 public class SingleLinkedList {
 	
-	public class LinkedList{
-		Node head;
+//	public class LinkedList{
+		public Node head;
 		
 		public void insert( int data) {
 			Node newNode=new Node(data);
@@ -41,11 +41,12 @@ public class SingleLinkedList {
 			System.out.println("Linked List : ");
 			
 			while(temp!=null) {
-				System.out.println(temp.data+" , ");
+				System.out.print(temp.data+" , ");
 				temp=temp.next;
 			}
+			System.out.println();
 		}
-	}
+//	}
 	
 	static int main() {
 		Node n1=new Node(10);

@@ -90,11 +90,58 @@ public class EasyByLeet {
     	return -1;
     }
     
-//    public static void main(String args[]) 
-//    { 
-//    	int[] n=new int[] {1,1};
-//    	int i=strStr("mississippi","issip");
-//    	System.out.println("index : "+i);
-//    } 
+    public static int findClosest(int[] arr, int x){
+        int start=0;
+       int end=arr.length-1;
+       
+       while(start<=end){
+           int mid=(start+end)/2;
+           
+           if(arr[mid]==x){
+               return mid;
+           }
+           
+           else if(arr[mid]<x){
+               start=mid=1;
+           }
+           else{
+               end=mid-1;
+           }
+       }
+       
+       return start;
+    }
+    
+    public static int[] findClosestElements(int[] arr, int k, int x) {
+       int index=findClosest(arr,x);
+       System.out.println("index : "+index);
+       int[] a=new int[k];
+       a[0]=arr[index];
+       int i=1;
+       int count=1;
+       while(count<k){
+           System.out.println("count : "+count);
+           if(index-i>=0){
+               a[count]=arr[index-i];
+               count++;
+           }
+           
+           if(index+i<arr.length && count <k){
+               a[count]=arr[index+i];
+               count++;
+           }
+           i++;
+       }
+       
+       Arrays.sort(a);
+       return a;
+    }
+    
+    public static void main(String args[]) 
+    { 
+    	int[] n=new int[] {1, 2, 3, 4, 5};
+    	findClosestElements(n, 4,3);
+//    	Sy?stem.out.println("index : "+i);
+    } 
 
 }
