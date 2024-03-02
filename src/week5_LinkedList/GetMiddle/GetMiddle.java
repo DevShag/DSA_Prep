@@ -23,7 +23,7 @@ public class GetMiddle {
 //		=========================Tortoise - Hare Approch===========================
 //		Time Complexity O(N)
 //		Space Complexity O(1)
-	static int getMiddle(Node head)
+	public static int getMiddle(Node head)
 	    {
 	         if(head.next==null){
 	            return head.data;
